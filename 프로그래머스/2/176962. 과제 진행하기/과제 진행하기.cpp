@@ -37,7 +37,7 @@ vector<string> solution(vector<vector<string>> plans) {
     stack<pair<int,int>> stop;
     
     for(int i=0;i<plans.size()-1;i++){
-        int tmp = addTime(plans[i][1],plans[i][2]);
+        int tmp = stoi(plans[i][1])+stoi(plans[i][2]);
         
         if(tmp >stoi(plans[i+1][1])){
             stop.push({i,stoi(plans[i][2])-(stoi(plans[i+1][1])-stoi(plans[i][1]))});
@@ -45,7 +45,7 @@ vector<string> solution(vector<vector<string>> plans) {
         }
         else{
             answer.push_back(plans[i][0]);
-            time = addTime(plans[i][1],plans[i][2]);
+            time = stoi(plans[i][1])+stoi(plans[i][2]);
             
             while(time<stoi(plans[i+1][1])&&!stop.empty()){
                 pair<int,int> s = stop.top();
