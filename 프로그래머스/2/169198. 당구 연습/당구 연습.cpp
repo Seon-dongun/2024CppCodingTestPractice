@@ -3,7 +3,6 @@
 #include <cmath>
 #include <climits>
 #include <algorithm>
-#include <iostream>
 
 using namespace std;
 
@@ -29,11 +28,8 @@ vector<int> solution(int m, int n, int startX, int startY, vector<vector<int>> b
         
         if(startY!=balls[i][1]|| startX>=balls[i][0])
             minV = min(minV, static_cast<int>(pow(startX-(m+east), 2) + pow(startY-balls[i][1], 2)));
-
-
-                                                               
+                                                           
         answer.push_back(minV);
-    }
-    
+    }  
     return answer;
 }
