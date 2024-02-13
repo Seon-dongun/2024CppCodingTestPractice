@@ -133,3 +133,8 @@ Empty
       </table>
 
 > 출처: 프로그래머스 코딩 테스트 연습, https://school.programmers.co.kr/learn/challenges
+
+<hr>
+<h2> 개인 코멘트 </h2>
+<p>DATE 타입의 차이는 DATEDIFF(날짜, 날짜)+1 를 통해서 구할 수 있다.</p>
+<p>ROUND(실수, n)를 통해서 반올림해서 n번째 자릿수까지 갖도록 할 수 있음. n=1이면 두 번째 자리에서 반올림에서 1번째 자리 소수로 만듬</p>
