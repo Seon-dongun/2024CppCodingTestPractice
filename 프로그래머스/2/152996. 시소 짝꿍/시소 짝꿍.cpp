@@ -24,7 +24,7 @@ long long solution(vector<int> weights) {
             if(base<=1000)
                 answer += cnt[base];
         }        
-        int base = weights[i]*2;// weights와 쌍이 되는 base가 2:4인 경우
+        int base = weights[i]*2;// weights와 쌍이 되는 base가 2:4(=1:2)인 경우
         if(base<=1000)
             answer+=cnt[base];
     }
