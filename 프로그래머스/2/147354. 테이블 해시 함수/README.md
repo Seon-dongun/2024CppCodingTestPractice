@@ -77,8 +77,4 @@
 <li>정해진 방법에 따라 튜플을 정렬하면 {4, 2, 9}, {2, 2, 6}, {1, 5, 10}, {3, 8, 3} 이 됩니다.</li>
 <li>S_2 = (2 mod 2) + (2 mod 2) + (6 mod 2) = 0 입니다.</li>
 <li>S_3 = (1 mod 3) + (5 mod 3) + (10 mod 3) = 4 입니다.</li>
-<li>따라서 해시 값은 S_2 XOR S_ 3 = 4 입니다.</li>
-</ul>
-
-
-> 출처: 프로그래머스 코딩 테스트 연습, https://school.programmers.co.kr/learn/challenges
+<li>따제</p>
