@@ -1,7 +1,5 @@
 #include <string>
 #include <vector>
-#include <algorithm>
-#include <iostream>
 #include <queue>
 using namespace std;
 
@@ -24,11 +22,9 @@ int solution(int n, int k, vector<int> enemy) {
             k--;
             sum-=pq.top();
             pq.pop();
-        }
-        
-        
+        }          
         answer++;      
-    }  
+    }     
     
     return answer;
 }
