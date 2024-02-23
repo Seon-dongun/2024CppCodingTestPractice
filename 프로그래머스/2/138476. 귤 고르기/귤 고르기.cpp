@@ -1,31 +1,30 @@
 #include <string>
 #include <vector>
-#include <set>
+#include <map>
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
 int solution(int k, vector<int> tangerine) {
     int answer = 0;
-    multiset<int> m;
-    vector<int> cnt(10000001,0);
+    map<int,int> m;
+    vector<int> cnt;
     
     for(int i=0;i<tangerine.size();i++)
-        cnt[tangerine[i]]++;
+        m[tangerine[i]]++;
        
     
-    for(int i=1;i<=10000000;i++){
-        if(cnt[i]!=0){
-            m.insert(cnt[i]);
-        }
-    }
+    for(auto it : m)
+        cnt.push_back(it.second);
     
-    int a = 0;
-    for(auto it=m.rbegin();it!=m.rend();it++){
+    sort(cnt.begin(),cnt.end(),greater<int>());
+    
+    for(int i=0;i<cnt.size();i++){
         
-        if(a>=k)
-            break;
         answer++;
-        a+=*it;
+        k-=cnt[i];
+        if(k<=0)
+            break;
     }
 
     return answer;
