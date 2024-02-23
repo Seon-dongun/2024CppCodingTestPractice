@@ -1,6 +1,5 @@
 #include <string>
 #include <vector>
-#include <iostream>
 #include <cmath>
 using namespace std;
 
@@ -10,8 +9,9 @@ vector<double> solution(int k, vector<vector<int>> ranges) {
     vector<double> vol;
     
     int i=0;
-    int cnt=0;
+    int cnt=1;
     dot.push_back(k);
+    
     while(k>1){
         if(k%2==0)
             k/=2;
@@ -37,14 +37,11 @@ vector<double> solution(int k, vector<vector<int>> ranges) {
     
     
     for(int i=0;i<ranges.size();i++){
-        if(abs(ranges[i][1])+ranges[i][0]>=cnt+1){
+        if(abs(ranges[i][1])+ranges[i][0]>=cnt)
             answer.push_back(-1.0);
-        }
-        else{
+        else
             answer.push_back(vol[cnt + ranges[i][1]] - vol[ranges[i][0]]);
-        }
     }
 
-    
     return answer;
 }
