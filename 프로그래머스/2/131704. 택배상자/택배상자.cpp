@@ -15,13 +15,14 @@ int solution(vector<int> order) {
     for(int i=0;i<order.size();i++){ 
         if(!mc.empty() && mc.front()<=order[i]){         
             while(1){
-                if(mc.front()==order[i]){
+                int front = mc.front();
+                mc.pop();
+                
+                if(front==order[i]){
                     answer++;
-                    mc.pop();
                     break;
                 }       
-                sub.push(mc.front());
-                mc.pop();    
+                sub.push(front);  
             }
         }
         
