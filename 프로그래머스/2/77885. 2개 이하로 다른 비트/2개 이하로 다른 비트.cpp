@@ -8,7 +8,7 @@ vector<long long> solution(vector<long long> numbers) {
     {
         if(number%2==0){
             answer.push_back(number+1);
-            continue;;
+            continue;
         }
         
         long long bit = 1;
