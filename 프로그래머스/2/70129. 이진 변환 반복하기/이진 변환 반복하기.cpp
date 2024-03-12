@@ -1,17 +1,15 @@
 #include <string>
 #include <vector>
-#include <iostream>
 #include <algorithm>
 using namespace std;
 
 string change(int cnt){
     string newStr = "";
-    while(cnt!=1){
+    while(cnt>0){
         newStr+=((cnt%2)+'0');
         cnt/=2;
     }
-    newStr+='1';
-    reverse(newStr.begin(),newStr.end());
+
     return newStr;
 }
 
