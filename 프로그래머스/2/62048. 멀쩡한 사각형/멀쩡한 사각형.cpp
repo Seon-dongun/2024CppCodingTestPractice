@@ -1,4 +1,3 @@
-#include <cmath>
 using namespace std;
 
 int gcd(int a, int b)
@@ -7,5 +6,5 @@ int gcd(int a, int b)
 } 
 
 long long solution(int w,int h) {
-    return (long long)w * (long long)h - (w+h) + gcd(w,h);
+    return (long long)w * (long long)h - ((w+h) - gcd(w,h));
 }
