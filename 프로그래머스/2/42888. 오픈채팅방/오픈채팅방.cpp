@@ -1,7 +1,7 @@
 #include <string>
 #include <vector>
 #include <sstream>
-#include <map>
+#include <unordered_map>
 
 using namespace std;
 
@@ -16,21 +16,12 @@ vector<string> solution(vector<string> record) {
     vector<string> answer;
     vector<pair<string,string>> list;
     string command, id, nickname;
-    map<string,string> m;
+    unordered_map<string,string> m;
     for(int i=0;i<record.size();i++){
         divRecord(record[i],command,id,nickname);
-        if(command=="Enter"){
-            if(m.find(id)!=m.end())
-                m[id] = nickname;
-            else
-                m.insert({id,nickname});
-            
-            list.push_back({command,id});
-        }   
-        else if(command=="Leave")
-            list.push_back({command,id});
-    
-        else if(command=="Change")
+        
+        list.push_back({command,id});
+        if(command!="Leave")
             m[id] = nickname;
     }
     
@@ -41,6 +32,8 @@ vector<string> solution(vector<string> record) {
         
         else if(list[i].first=="Leave")
             str+="님이 나갔습니다.";
+        else if(list[i].first=="Change")
+            continue;
         
         answer.push_back(str);
     }
