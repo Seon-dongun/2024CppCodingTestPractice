@@ -18,18 +18,14 @@ int solution(vector<int> priorities, int location) {
         int curIndex = q.front().second;
         q.pop();
         
-        if(curPriority < pq.top()){
+        if(curPriority < pq.top())
             q.push({curPriority, curIndex});
-        }
         else{
             pq.pop();
             answer++;
             if(curIndex == location)
                 break;
         }
-    }
-    
+    }    
     return answer;
-    
-
 }
