@@ -61,5 +61,6 @@
 
 <p>※ 공지 - 2022년 3월 11일 테스트케이스가 추가되었습니다.</p>
 
+<p> 효율성이 훨씬 높은 풀이에 대한 설명 https://mungto.tistory.com/13</p>
 
 > 출처: 프로그래머스 코딩 테스트 연습, https://school.programmers.co.kr/learn/challenges
