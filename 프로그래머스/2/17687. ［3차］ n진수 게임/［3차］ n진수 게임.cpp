@@ -19,10 +19,15 @@ string change(int n,int num){
 string solution(int n, int t, int m, int p) {
     string answer = "";
     string tmp = "0";
-    for(int i=1;i<=30000;i++)
-        tmp += change(n,i);
+    
+    int i=0;
     
     while(answer.length()!=t){
+        while(tmp.length()<p){
+            tmp += change(n,i);
+            i++;
+        }
+        
         answer += tmp[p-1];
         p+=m;
     }
