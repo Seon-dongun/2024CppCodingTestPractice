@@ -1,27 +1,24 @@
 #include <string>
 #include <vector>
-#include <unordered_map>
-#include <unordered_set>
 #include <iostream>
 #include <algorithm>
 using namespace std;
 
-vector<vector<string>> ticket;
 vector<string> answer;
 bool check[10001];
 bool isAnswer;
 
-void dfs(string start, int ticketCnt){
+void dfs(vector<vector<string>>& tickets,string start, int ticketCnt){
     answer.push_back(start);
     
-    if (ticketCnt == ticket.size()) {
+    if (ticketCnt == tickets.size())
         isAnswer = true;
-    }
-    
-    for (int i = 0; i < ticket.size(); i++) {
-        if (ticket[i][0] == start && !check[i]) {
+
+    for (int i = 0; i < tickets.size(); i++) {
+        if (tickets[i][0] == start && !check[i]) {
             check[i] = true;
-            dfs(ticket[i][1], ticketCnt+1);
+            cout << tickets[i][1] << " " << ticketCnt+1 << endl;
+            dfs(tickets,tickets[i][1], ticketCnt+1);
             
             if (!isAnswer) {
                 answer.pop_back();
@@ -34,8 +31,7 @@ void dfs(string start, int ticketCnt){
 
 vector<string> solution(vector<vector<string>> tickets) {
     sort(tickets.begin(), tickets.end());
-    ticket = tickets;
-    dfs("ICN", 0);
+    dfs(tickets,"ICN", 0);
     
     return answer;
 }
