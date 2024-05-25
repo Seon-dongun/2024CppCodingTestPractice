@@ -36,3 +36,8 @@
 
  <p>8개의 능력치를 잘 배열해서 방사형 그래프를 볼록 다각형으로 만드는 경우의 수를 출력한다.</p>
 
+
+### 풀이
+![image](https://github.com/Seon-dongun/2024CppCodingTestPractice/assets/77486690/d380b795-a1d8-4daf-be5d-553489f671ca)
+![image](https://github.com/Seon-dongun/2024CppCodingTestPractice/assets/77486690/a7d36506-3432-447e-8409-9ea3e80a481b)
+
