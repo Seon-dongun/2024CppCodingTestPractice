@@ -8,7 +8,7 @@ int value[1001];
 vector<pair<int,int>> graph[1001];
 priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
 
-void djstra(int s,int e){
+void dijkstra(int s,int e){
     value[s] = 0;
     pq.push({0,s});
     
@@ -27,8 +27,7 @@ void djstra(int s,int e){
             if(value[u]+cost < value[v]){
                 value[v] = value[u]+cost;
                 pq.push({value[v],v});
-            }
-            
+            }            
         }     
     }
     return;
@@ -48,7 +47,7 @@ int main(){
     }
     
     cin >> s >> e;
-    djstra(s,e);
+    dijkstra(s,e);
     
     cout << value[e];
     return 0;
