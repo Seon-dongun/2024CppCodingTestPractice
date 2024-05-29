@@ -24,8 +24,8 @@ void dijkstra(int s,int e){
             int v = graph[u][i].first;
             int cost = graph[u][i].second;
             
-            if(value[u]+cost < value[v]){
-                value[v] = value[u]+cost;
+            if(w+cost < value[v]){
+                value[v] = w+cost;
                 pq.push({value[v],v});
             }            
         }     
