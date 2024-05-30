@@ -1,28 +1,17 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
 vector<int> tree[50];
-int parent[50];
 int answer = 0;
-void search(int id) {
-    if (tree[id].size() == 0) {
+void search(int id,int del) {
+    if (tree[id].size() == 0 || (tree[id].size() == 1 && tree[id][0]==del))
         answer++;
-        return;
-    }
 
     for (int i = 0; i < tree[id].size(); i++) {
-        search(tree[id][i]);
+        if(tree[id][i]!=del)
+            search(tree[id][i],del);
     }
-}
-
-void Delete(int del) {
-    int p = parent[del];
-    for (int i = 0; i < tree[p].size(); i++) {
-        tree[p].erase(remove(tree[p].begin(),tree[p].end(),del),tree[p].end());
-    }
-    tree[del].clear();
 }
 
 int main() {
@@ -30,20 +19,17 @@ int main() {
     cin >> n;
     for (int i = 0; i < n; i++) {
         cin >> num;
-        parent[i] = num;
-        if (num == -1) {
+        if (num == -1)
             root = i;
-            continue;
-        }
-        tree[num].push_back(i);
+        else
+            tree[num].push_back(i);
     }
     cin >> del;
 
-    if (parent[del] == -1)
+    if (del== root)
         cout << 0;
     else {
-        Delete(del);
-        search(root);
+        search(root,del);
         cout << answer;
     }
     return 0;
