@@ -1,49 +1,54 @@
 #include <string>
 #include <vector>
-#include <queue>
 #include <iostream>
+#include <queue>
+#define INF 987654321
 using namespace std;
+
+vector<int> graph[20001];
+int dist[20001];
+priority_queue<pair<int,int>, vector<pair<int,int>> , greater<pair<int,int>>> pq;
+
+int checkDist() {
+    pq.push({0, 1});
+    dist[1] = 0;
+    int maxDist = 0;
+    
+    while(!pq.empty()) {
+        int u = pq.top().second;
+        int d = pq.top().first;
+        pq.pop();
+        
+        if(d > maxDist)
+            maxDist = d;
+        
+        for(int i = 0; i < graph[u].size(); i++) {
+            int v = graph[u][i];
+            if(dist[u] + 1 < dist[v]) {
+                dist[v] = dist[u] + 1;
+                pq.push({dist[v], v});
+            }
+        }
+    }
+    
+    return maxDist;
+}
 
 int solution(int n, vector<vector<int>> edge) {
     int answer = 0;
-    int value[20001];
-    vector<int> graph[20001];
-    priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
     
-    for(int i=0;i<edge.size();i++){
+    for(int i = 0; i < edge.size(); i++) {
         graph[edge[i][0]].push_back(edge[i][1]);
         graph[edge[i][1]].push_back(edge[i][0]);
     }
     
-    for(int i=1;i<=n;i++)
-        value[i] = 999999999;
+    for(int i = 1; i <= n; i++)
+        dist[i] = INF;
     
-    value[1] = 0;
+    int maxDist = checkDist();
     
-    pq.push({0,1});
-    int max = -1;
-        
-    while(!pq.empty()){
-        int u = pq.top().second;
-        int curW = pq.top().first;
-        pq.pop();
-        
-        for(int i=0;i<graph[u].size();i++){
-            int v = graph[u][i];
-            
-            if(curW+1 < value[v]){
-                value[v] = curW+1;
-                pq.push({curW+1,v});
-            }
-
-            if(max<value[v])
-                max = value[v];
-        }  
-    }
-    
-    cout << max << endl;
-    for(int i=1;i<=n;i++){
-        if(max == value[i])
+    for(int i = 1; i <= n; i++) {
+        if(dist[i] == maxDist)
             answer++;
     }
     
