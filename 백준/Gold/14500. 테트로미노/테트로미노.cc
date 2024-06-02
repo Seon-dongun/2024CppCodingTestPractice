@@ -3,8 +3,8 @@
 #include <algorithm>
 using namespace std;
 
-int board[551][551];
-int visited[551][551];
+int board[502][502];
+int visited[502][502];
 int answer = 0;
 int n, m;
 int dx[4] = { 0,0,1,-1 };
