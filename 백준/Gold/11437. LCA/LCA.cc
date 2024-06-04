@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <stack>
+#include <queue>
 using namespace std;
 
 vector<int> graph[50001];
@@ -8,16 +9,19 @@ int parent[50001];
 
 int visited[50001] = { 0, };
 void checkParent(int pNum) {
-    if (visited[pNum] == 1)
-        return;
+    queue<int> q;
+    visited[1] = 1;
+    q.push(1);
 
-    visited[pNum] = 1;
-
-    for (int i = 0; i < graph[pNum].size(); i++) {
-        int child = graph[pNum][i];
-        if (visited[child] == 0) {
-            parent[child] = pNum;
-            checkParent(child);
+    while (!q.empty()) {
+        int n = q.front();
+        q.pop();
+        for (int i = 0; i < graph[n].size(); i++) {
+            if (!visited[graph[n][i]]) {
+                visited[graph[n][i]] = 1;
+                parent[graph[n][i]] = n;
+                q.push(graph[n][i]);
+            }
         }
     }
 }
