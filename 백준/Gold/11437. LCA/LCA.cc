@@ -1,14 +1,14 @@
 #include <iostream>
 #include <vector>
-#include <stack>
 #include <queue>
 using namespace std;
 
 vector<int> graph[50001];
 int parent[50001];
-
 int visited[50001] = { 0, };
-void checkParent(int pNum) {
+int depth[50001];
+
+void checkParent() {
     queue<int> q;
     visited[1] = 1;
     q.push(1);
@@ -20,39 +20,27 @@ void checkParent(int pNum) {
             if (!visited[graph[n][i]]) {
                 visited[graph[n][i]] = 1;
                 parent[graph[n][i]] = n;
+                depth[graph[n][i]] = depth[n] + 1;
                 q.push(graph[n][i]);
             }
         }
     }
 }
 
-void check(int a, int b) {
-    stack<int> st1, st2;
-    int answer;
-
-    st1.push(a);
-    int tmp = a;
-    while (parent[tmp]!=-1) {
-        st1.push(parent[tmp]);
-        tmp = parent[tmp];
+void LCA(int a, int b) {
+    while (depth[a] != depth[b]){
+        if (depth[a] > depth[b])
+            a = parent[a];
+        else
+            b = parent[b];
     }
 
-    st2.push(b);
-    tmp = b;
-    while (parent[tmp] != -1) {
-        st2.push(parent[tmp]);
-        tmp = parent[tmp];
+    while (a != b){
+        a = parent[a];
+        b = parent[b];
     }
 
-    while (!st1.empty() && !st2.empty()) {
-        if (st1.top() != st2.top())
-            break;
-        answer = st1.top();
-        st1.pop();
-        st2.pop();
-    }
-
-    cout << answer << endl;
+    cout << a << endl;
 }
 
 int main() {
@@ -65,12 +53,12 @@ int main() {
     }
 
     parent[1] = -1;
-    checkParent(1);
+    checkParent();
 
     cin >> m;
     for (int i = 0; i < m; i++) {
         cin >> a >> b;
-        check(a, b);
+        LCA(a, b);
     }
 
     return 0;
