@@ -2,23 +2,19 @@
 using namespace std;
 int dp[100001];
 int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    
     int n;
     cin >> n;
 
-    dp[1] = 1;
-    dp[2] = 2;
-    for (int i = 3; i <= n; i++) {
-        int minV = 987654321;
-        for (int j = 1; j < i && j*j<=100000; j++) {
-            if (j * j == i) {
-                minV = 1;
-                break;
-            }
-
-            if(j * j <i)
-                minV = min(minV,dp[i - j * j] + dp[j * j]);
+    for(int i=0; i<=n; i++) 
+        dp[i] = i;
+    
+    for(int i=1; i<=n; i++){
+        for(int j = 1; j*j<=i; j++){
+            dp[i] = min(dp[i], dp[i-j*j]+1);
         }
-        dp[i] = minV;
     }
 
     cout << dp[n];
