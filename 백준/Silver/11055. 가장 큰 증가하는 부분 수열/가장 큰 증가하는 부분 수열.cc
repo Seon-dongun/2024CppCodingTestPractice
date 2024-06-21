@@ -13,8 +13,8 @@ int main() {
     for(int i = 1; i<= n; i++) {
         dp[i] = num[i];
         for(int j = 1; j <i;j++) {
-            if(num[i] > num[j] && dp[i] < dp[j] +num[i])
-                dp[i] = dp[j] + num[i];
+            if(num[i] > num[j])
+                dp[i] = max(dp[i],dp[j] + num[i]);
         }
         answer = max(answer,dp[i]);
     }
