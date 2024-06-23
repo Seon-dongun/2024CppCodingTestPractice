@@ -1,29 +1,23 @@
 #include <iostream>
 using namespace std;
 
-int n,m;
-int maze[1000][1000];
-int dp[1000][1000];
-int dx[3] = {1,0,1};
-int dy[3] = {0,1,1};
-int main(){
+int n, m;
+int maze[1001][1001];
+int dp[1001][1001] = { 0, };
+
+int main() {
     cin >> n >> m;
-    for(int i=0;i<n;i++){
-        for(int j=0;j<m;j++)
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++)
             cin >> maze[i][j];
     }
-    
-    dp[0][0] = maze[0][0];
-    for(int i=0;i<n;i++){
-        for(int j=0;j<m;j++){         
-            for(int k=0;k<3;k++){
-                int nx = i + dx[k];
-                int ny = j + dy[k];
-                if(nx<n && ny < m)
-                    dp[nx][ny] = max(dp[nx][ny],dp[i][j]+maze[nx][ny]);
-            }          
+
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
+            int maxV = max(dp[i-1][j], max(dp[i][j-1],dp[i-1][j-1]));
+            dp[i][j] = maxV + maze[i][j];
         }
     }
-    
-    cout << dp[n-1][m-1];
+
+    cout << dp[n][m];
 }
