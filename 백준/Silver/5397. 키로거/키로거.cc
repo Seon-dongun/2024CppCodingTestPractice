@@ -1,55 +1,44 @@
 #include <iostream>
-#include <string>
 #include <list>
+
 using namespace std;
-int main() {
-    int n;
-    string str;
-    cin >> n;
 
-    while (n--) {
-        cin >> str;
-        int loc = 0;
-        list<char> password;
-        list<char>::iterator it;
+int main(){
+    int N;
+    string s;
+ 
+    cin >> N;
 
-        for (int i = 0; i < str.length(); i++) {
-            if (str[i] == '<') {
-                if (password.empty())
-                    continue;
+    list<char>::iterator it;
+    list<char> password;
+    
+    for(int i = 0 ; i < N ; ++i){      
+        cin >> s;    
 
-                if (it != password.begin())
+        password.clear();
+        it = password.begin();    
+              
+        for(int j = 0 ; j < s.length(); ++j){
+            if(s[j] =='<') {
+                if(it != password.begin()) 
                     it--;
             }
-            else if (str[i] == '>') {
-                if (password.empty())
-                    continue;
-
-                if (!password.empty() && it != password.end())
+            else if(s[j]=='>'){
+                if( it != password.end()) 
                     it++;
             }
-            else if (str[i] == '-') {
-                if (password.empty() || it == password.begin())
-                    continue;
-
-                if(it!=password.begin())
-                    it--;
-                it = password.erase(it);
-        
+            else if(s[j]=='-'){
+                if(it != password.begin()) 
+                    it = password.erase(--it);
             }
-            else {
-                if (password.empty()) {
-                    password.push_back(str[i]);
-                    it = password.end();
-                }
-                else
-                    password.insert(it, str[i]);
-            }
+            else{
+                password.insert(it,s[j]);
+            }   
         }
-        
-        for (it = password.begin(); it!=password.end(); it++)
-            cout << *it;
+
+        for(char x : password) 
+            cout << x;
         cout << endl;
     }
-
+    return 0;
 }
