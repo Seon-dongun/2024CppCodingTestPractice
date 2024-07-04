@@ -23,18 +23,14 @@ int cleaning(int n, int m, int i, int j, int d) {
         }
 
         if (check4DirectionClean(i, j)) {
-            if (d == 0) {
+            if (d == 0)
                 i++;
-            }
-            else if (d == 1) {
+            else if (d == 1)
                 j--;
-            }
-            else if (d == 2) {
+            else if (d == 2)
                 i--;
-            }
-            else if (d == 3) {
+            else if (d == 3)
                 j++;
-            }
             if (room[i][j] == 1)
                 break;
         }
@@ -72,10 +68,7 @@ int cleaning(int n, int m, int i, int j, int d) {
                         break;
                     }
                 }
-
-
             }
-
         }
     }
     return cnt;
@@ -86,9 +79,8 @@ int main() {
     cin >> n >> m;
     cin >> si >> sj >> d;
     for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
+        for (int j = 0; j < m; j++)
             cin >> room[i][j];
-        }
     }
 
     cout << cleaning(n, m, si, sj, d);
