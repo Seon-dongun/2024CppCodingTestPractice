@@ -4,24 +4,23 @@
 using namespace std;
 
 int main(){
-    int n,l,answer=0;
+    int n,l;
     cin >> n >> l;
-    int pipe[2002]={0,};
     vector<int> loc(n);
     
     for(int i=0;i<n;i++)
         cin >> loc[i];
     sort(loc.begin(),loc.end());
     
-    for(int i=0;i<n;i++){
-        if(pipe[loc[i]]==1)
-            continue;
-        
-        for(int j=loc[i];j<loc[i]+l;j++)
-            pipe[j] = 1;
-        
-        answer++;
+    int cnt = 1;
+    int start = loc[0];
+
+    for(int i = 1; i < n; i++) {
+        if(loc[i] - start + 1 > l) {
+            cnt++;
+            start = loc[i];
+        }
     }
-    cout << answer;
+    cout << cnt;
     return 0;
 }
