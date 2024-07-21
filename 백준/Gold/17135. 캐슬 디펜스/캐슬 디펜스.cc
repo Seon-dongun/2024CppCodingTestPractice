@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <queue>
 #include <set>
 #include <cmath>
 #define INF 987654321
@@ -35,15 +34,14 @@ vector<vector<int>> getCombination(vector<int>& num, int k) {
 
 void enemyMove() {
     for (int i = n-1; i >= 1; i--) {
-        for (int j = 0; j < m; j++) {
+        for (int j = 0; j < m; j++)
             board[i][j] = board[i - 1][j];
-        }
     }
 
-    for (int i = 0; i < m; i++) {
+    for (int i = 0; i < m; i++)
         board[0][i] = 0;
-    }
 }
+
 bool isAllZero(vector<pair<int,int>>& v) {
     bool flag = true;
     for (int i = 0; i < n; i++) {
@@ -94,7 +92,7 @@ int attack(vector<int>& acherLocation) {
     while (1) {
         set<pair<int, int>> s;
         vector<pair<int, int>> v;
-        if (isAllZero(v)==true)
+        if (isAllZero(v))
             break;
 
         for (int i = 0; i < 3; i++)
@@ -107,7 +105,6 @@ int attack(vector<int>& acherLocation) {
         enemyMove();
     }
     
-
     return cnt;
 }
 
