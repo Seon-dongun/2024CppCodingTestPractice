@@ -21,9 +21,8 @@ void rule3(vector<int>& info, vector<pair<int, int>>& maxPos) {
             y = maxPos[i].second;
         }
         else if (x == maxPos[i].first) {
-            if (y > maxPos[i].second) {
+            if (y > maxPos[i].second)
                 y = maxPos[i].second;
-            }
         }
     }
 
@@ -44,9 +43,8 @@ void rule2(vector<int>& info,vector<pair<int,int>>& maxPos) {
             int ny = cy + dy[j];
             
             if (0 <= nx && nx < n && 0 <= ny && ny < n) {
-                if (seat[nx][ny] == 0) {
+                if (seat[nx][ny] == 0)
                     cnt++;
-                }
             }
         }
 
@@ -57,16 +55,12 @@ void rule2(vector<int>& info,vector<pair<int,int>>& maxPos) {
         }
         else if (maxCnt == cnt)
             maxPos2.push_back({ cx,cy });
-
     }
 
-    if (maxPos2.size() == 1) {
+    if (maxPos2.size() == 1)
         seat[maxPos2[0].first][maxPos2[0].second] = info[0];
-    }
-    else {
+    else
         rule3(info, maxPos2);
-    }
-
 }
 
 void rule1(vector<int>& info) {
@@ -83,9 +77,8 @@ void rule1(vector<int>& info) {
                 int ny = j + dy[k];
 
                 if (0 <= nx && nx < n && 0 <= ny && ny < n) {
-                    if (find(info.begin() + 1, info.end(), seat[nx][ny]) != info.end()) {
+                    if (find(info.begin() + 1, info.end(), seat[nx][ny]) != info.end())
                         cnt++;
-                    }
                 }
             }
 
@@ -94,20 +87,15 @@ void rule1(vector<int>& info) {
                 maxPos.push_back({ i, j });
                 maxCnt = cnt;
             }
-            else if (maxCnt == cnt) {
+            else if (maxCnt == cnt)
                 maxPos.push_back({ i,j });
-            }
-
         }
     }
 
-    if (maxPos.size() == 1) {
+    if (maxPos.size() == 1)
         seat[maxPos[0].first][maxPos[0].second] = info[0];
-    }
-    else {
+    else
         rule2(info,maxPos);
-    }
-
 }
 
 
@@ -124,9 +112,8 @@ int cul() {
 
                 if (0 <= nx && nx < n && 0 <= ny && ny < n) {
                     vector<int> tmp = m[seat[i][j]];
-                    if (find(tmp.begin(), tmp.end(), seat[nx][ny]) != tmp.end()) {
+                    if (find(tmp.begin(), tmp.end(), seat[nx][ny]) != tmp.end())
                         cnt++;
-                    }
                 }
             }
 
@@ -157,9 +144,8 @@ int main() {
     }
 
 
-    for (int i = 0; i < like.size(); i++) {
+    for (int i = 0; i < like.size(); i++)
         rule1(like[i]);
-    }
 
     cout << cul();
 }
