@@ -7,7 +7,6 @@
 using namespace std;
 
 vector<int> graph[10001];
-int value[10001];
 int visited[10001] = { 0, };
 
 set<int> answer;
