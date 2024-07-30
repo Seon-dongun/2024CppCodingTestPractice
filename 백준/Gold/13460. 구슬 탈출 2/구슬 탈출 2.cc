@@ -40,7 +40,7 @@ void BFS(int Rx, int Ry, int Bx, int By){
 		int count = q.front().Count;
 		q.pop();
 
-		if (count >= 10)
+		if (count >= 10) // 이동 횟수 초과
 			break;
 
 		for (int i = 0; i < 4; i++)
@@ -48,18 +48,20 @@ void BFS(int Rx, int Ry, int Bx, int By){
 			int nrx = rx, nry = ry, nbx = bx, nby = by;
 			int rc = 0, bc = 0, ncount = count + 1;
 
-			move(nrx, nry, rc, i);
-			move(nbx, nby, bc, i);
+			move(nrx, nry, rc, i); // 빨간 공 이동
+			move(nbx, nby, bc, i); // 파란 공 이동
 
-			if (map[nbx][nby] == 'O') 
+			if (map[nbx][nby] == 'O') // 파란 공이 구멍에 빠지면 안되므로 continue
 				continue;
 
-			if (map[nrx][nry] == 'O'){
+			if (map[nrx][nry] == 'O'){ // 파란 공은 구멍에 안빠지고 빨간 공만 구멍에 들어가면 성공
 				cout << ncount;
 				return;
 			}
 
-			if (nrx == nbx && nry == nby){
+			// 만약에 두 공을 어느 한 방향 끝까지 이동했을 때 서로 같은 위치에 있다면, 
+			// 둘 중 더 이동 거리가 긴 공이 바깥쪽, 거리가 짧은 공이 안쪽에 위치하게 된다.
+			if (nrx == nbx && nry == nby){ 
 				if (rc > bc) {
 					nrx -= dx[i];
 					nry -= dy[i];
