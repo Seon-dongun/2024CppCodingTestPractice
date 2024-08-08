@@ -1,27 +1,31 @@
 #include <iostream>
-#include <string>
 #include <algorithm>
 using namespace std;
 
 int main() {
-    int n, m, cnt = 0;
-    string s, check = "";
-    cin >> n;
-    cin >> m;
-    cin >> s;
+	ios_base::sync_with_stdio(0);
+	cin.tie(0); cout.tie(0);
 
-    for (int i = 0; i < n; i++)
-        check += "IO";
-    check += "I";
+	int n, m; string str;
+	cin >> n >> m >> str;
 
-    int len = check.length();
+	int ans = 0;
+	for (int i = 0; i < m; i++) {
 
-    for (int i = 0; i < s.length() - len + 1; i++) {
-        string tmp = s.substr(i,len);
-        if (tmp == check)
-            cnt++;
-    }
+		int k = 0;
+		if (str[i] == 'O') 
+			continue;
 
-    cout << cnt;
-    return 0;
+		while (str[i + 1] == 'O' && str[i + 2] == 'I') {
+			k++;
+
+			if (k == n) {
+				ans++;
+				k--; 
+			}
+			i += 2; 
+		}
+	}
+
+	cout << ans << '\n';
 }
