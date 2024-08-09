@@ -24,7 +24,7 @@ int main() {
     }
 
     tmpH = v[h - 1];
-    for (int i = h - 1; i >= maxPos.first; i--) {
+    for (int i = h - 1; i > maxPos.first; i--) {
         if (v[i] >= tmpH)
             tmpH = v[i];
         else 
