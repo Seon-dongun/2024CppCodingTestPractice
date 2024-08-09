@@ -1,35 +1,35 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
 int main() {
-    int map[500][500] = { 0, };
-    int h, w, answer = 0;
-    cin >> h >> w;
-    int blockh;
-    for (int i = 0; i < w; i++) {
-        cin >> blockh;
-        for (int j = h - 1; j >= h - blockh; j--)
-            map[j][i] = 1;
-    }
-
+    int w, h, water = 0;
+    cin >> w >> h;
+    vector<int> v(h);
+    pair<int, int> maxPos = { -1,-1 };
     for (int i = 0; i < h; i++) {
-        int s = 0, e = w - 1;
-
-        while (map[i][s] == 0)
-            s++;
-        while (map[i][e] == 0)
-            e--;
-
-        if (s < e) {
-            for (int j = s; j <= e; j++) {
-                if (map[i][j] == 0)
-                    answer++;
-            }
+        cin >> v[i];
+        if (maxPos.second < v[i]) {
+            maxPos.first = i;
+            maxPos.second = v[i];
         }
     }
 
-    cout << answer;
-    return 0;
+    int tmpH = v[0];
+    for (int i = 0; i < maxPos.first; i++) {
+        if (v[i] >= tmpH)
+            tmpH = v[i];
+        else
+            water += (tmpH - v[i]);
+    }
+
+    tmpH = v[h - 1];
+    for (int i = h - 1; i >= maxPos.first; i--) {
+        if (v[i] >= tmpH)
+            tmpH = v[i];
+        else 
+            water += (tmpH - v[i]);
+    }
+
+    cout << water;
 }
