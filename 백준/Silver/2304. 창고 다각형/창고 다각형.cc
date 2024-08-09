@@ -32,7 +32,6 @@ int main() {
             tmpy = v[i].second;
         }
 
-
         i++;
     }
 
