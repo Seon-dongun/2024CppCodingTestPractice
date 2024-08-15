@@ -1,54 +1,37 @@
 #include <iostream>
-#include <algorithm>
 #include <vector>
-#include <cmath>
 using namespace std;
-vector<pair<int, int>> v;
+
 
 int main() {
-    int n, x, y;
+    int n;
     cin >> n;
-    pair<int, int> maxPos = { -1,-1 };
+    vector<pair<int, int>> info(n);
+    int arr[1001];
+    int linfo[1001] = { 0, }, rinfo[1001] = { 0, };
+    int maxX = -1;
+    int minX = 2000;
     for (int i = 0; i < n; i++) {
-        cin >> x >> y;
-        v.push_back({ x,y });
-        if (maxPos.second < y) {
-            maxPos.first = x;
-            maxPos.second = y;
-        }
+        cin >> info[i].first >> info[i].second;
+        if (maxX <= info[i].first)
+            maxX = info[i].first;
+        if (minX > info[i].first)
+            minX = info[i].first;
+
+        arr[info[i].first] = info[i].second;
     }
 
-    sort(v.begin(), v.end());
+    linfo[minX] = arr[minX];
+    for (int i = minX + 1; i <= maxX; i++)
+        linfo[i] = max(linfo[i - 1], arr[i]);
 
-    int sum = 0;
-    int tmpx = v[0].first;
-    int tmpy = v[0].second;
-    int i = 0;
+    for (int i = maxX; i >= minX; i--) 
+        rinfo[i] = max(rinfo[i + 1], arr[i]);
 
-    while (i<n) {
-        if (tmpy <= v[i].second) {
-            sum += ((v[i].first - tmpx) * tmpy);
-            tmpx = v[i].first;
-            tmpy = v[i].second;
-        }
+    int answer = 0;
+    for (int i = minX; i <= maxX; i++)
+        answer += min(linfo[i], rinfo[i]);
 
-        i++;
-    }
-
-    i = n - 1;
-    tmpx = v[i].first;
-    tmpy = v[i].second;
-
-    while (i>=0) {
-        if (tmpy < v[i].second) {
-            sum += ((tmpx-v[i].first) * tmpy);
-            tmpx = v[i].first;
-            tmpy = v[i].second;
-        }
-
-        i--;
-    }
-
-    cout << sum+maxPos.second << endl;
+    cout << answer << endl;
     return 0;
 }
