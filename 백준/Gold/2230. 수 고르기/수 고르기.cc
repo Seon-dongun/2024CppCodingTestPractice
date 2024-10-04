@@ -14,15 +14,14 @@ int main()
     
     sort(num,num+n);
     
-    int s = 0, e = 1;
+    int s = 0, e = 0;
     int answer = 2000001000;
-    while(s<=e && e < n)
+    while(s<n && e < n)
     {
-        if(abs(num[s]-num[e]) >= m)
+        if(num[e]-num[s] >= m)
         {
-            answer = min(answer,abs(num[s]-num[e]));
+            answer = min(answer,num[e]-num[s]);
             s++;
-            e = s+1;
         }
         else 
             e++;
